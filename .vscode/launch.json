@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-PastelApplication<pastel>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "yapp.pastel.PastelApplication",
+            "projectName": "pastel",
+            "args": ""
+        }
+    ]
+}

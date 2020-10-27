@@ -1,0 +1,18 @@
+spring:
+    servlet:
+        multipart:
+            maxFileSize: 100MB
+            maxRequestSize: 100MB
+    
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/pastel?serverTimezone=UTC&characterEncoding=utf8
+        username: root
+        password: 1234
+    
+    jpa:
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        open-in-view: false
+        show-sql: true
+        hibernate:
+            ddl-auto: update

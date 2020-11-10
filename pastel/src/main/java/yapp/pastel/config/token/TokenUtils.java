@@ -1,6 +1,8 @@
 package yapp.pastel.config.token;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -17,13 +19,21 @@ import yapp.pastel.domain.user.User;
 public class TokenUtils {
 
   // @Value("${jwt.signingKey}")
-  private String signingKey = "keykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykeykey";
+  private String signingKey = "keykeykeykeykeykeykeykeykeykeykeykeykeykeykeykey";
 
   // @Value("${jwt.subject}")
   private String subject = "subject";
+  Map<String, Object> headers = new HashMap<>();
+
+  public TokenUtils() {
+    headers.put("typ", "JWT");
+    headers.put("alg", "HS256");
+  }
 
   public String createAccessToken(User user) {
     return Jwts.builder()
+        .setHeader(headers)
+        .signWith(SignatureAlgorithm.HS256, signingKey.getBytes())
         .setId(UUID.randomUUID().toString())
         .setSubject(subject)
         .setIssuedAt(new Date())
@@ -35,7 +45,8 @@ public class TokenUtils {
 
   public String createRefreshToken(User user) {
     return Jwts.builder()
-        .signWith(SignatureAlgorithm.HS512, signingKey.getBytes())
+        .setHeader(headers)
+        .signWith(SignatureAlgorithm.HS256, signingKey.getBytes())
         .setId(UUID.randomUUID().toString())
         .setSubject(subject)
         .setIssuedAt(new Date())
@@ -65,5 +76,10 @@ public class TokenUtils {
   public String getRoles(String jwt) {
     return (String) claims(jwt)
         .get("roles");
+  }
+
+  public int getExpiration(String jwt) {
+    return (int) claims(jwt)
+        .get("exp");
   }
 }

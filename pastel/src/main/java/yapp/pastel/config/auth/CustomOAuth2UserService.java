@@ -55,8 +55,9 @@ public class CustomOAuth2UserService implements OAuth2UserService {
         String accessToken = tokenUtils.createAccessToken(user);
         System.out.println(refreshToken);
         System.out.println(accessToken);
-        // System.out.println(tokenUtils.getEmail(accessToken));
-        // System.out.println(tokenUtils.getRoles(accessToken));
+        System.out.println(tokenUtils.getEmail(accessToken));
+        System.out.println(tokenUtils.getRoles(accessToken));
+        System.out.println(tokenUtils.getExpiration(accessToken));
         //
         return new DefaultOAuth2User(
             Collections.singleton(new SimpleGrantedAuthority(user.getRoleKey())),

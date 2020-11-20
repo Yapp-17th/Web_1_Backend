@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,6 +34,9 @@ public class Store {
   private String notice;
   private String contact;
   private String introduce;
+
+  @ColumnDefault("0")
+  private Long view;
 
   // private List<Cake> cakes = new ArrayList<>();
 }

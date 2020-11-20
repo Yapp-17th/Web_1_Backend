@@ -7,4 +7,5 @@ import yapp.pastel.repository.UserRepository;
 public class UserService {
   @Autowired
   private UserRepository userRepository;
+
 }

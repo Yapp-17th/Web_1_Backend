@@ -21,12 +21,12 @@ public class Review {
   @GeneratedValue( strategy = GenerationType.IDENTITY )
   private Long id;
   
-  private Long storeId;
+  private String storeEmail;
   private Float rating;
 
   @ColumnDefault("0")
   private Integer likes;
-  
+
   private String photoUrl;
   private String comment;
   private String content;

@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.ColumnDefault;
@@ -38,5 +39,6 @@ public class Store {
   @ColumnDefault("0")
   private Long view;
 
-  // private List<Cake> cakes = new ArrayList<>();
+  @OneToMany
+  private List<Cake> cakes = new ArrayList<>();
 }

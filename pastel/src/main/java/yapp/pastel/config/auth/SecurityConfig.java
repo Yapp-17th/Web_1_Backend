@@ -25,8 +25,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .authorizeRequests()
                 .antMatchers("/", "/css/**", "/images/**",
                             "/js/**").permitAll()
-                .antMatchers("/api/v1/**").hasRole(Role.USER.name())
-                .anyRequest().authenticated()
+                // .antMatchers("/api/v1/**").hasRole(Role.USER.name())
+                // .anyRequest().authenticated()
             .and()
                 .logout()
                     .logoutSuccessUrl("/")
